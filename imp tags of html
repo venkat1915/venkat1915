@@ -1,0 +1,110 @@
+🧱 Structural Tags
+<html>: Root element of an HTML document.
+
+<head>: Contains meta-information (not visible content).
+
+<body>: Contains the visible content of the page.
+
+📄 Metadata Tags (Inside <head>)
+<title>: Sets the title of the document (shown in the browser tab).
+
+<meta>: Provides metadata (like charset, viewport, description).
+
+<link>: Links external resources (e.g., CSS).
+
+<script>: Adds JavaScript to the page.
+
+<style>: Embeds CSS styles directly.
+
+✍️ Text Formatting Tags
+<h1> to <h6>: Headings (h1 is the largest).
+
+<p>: Paragraph.
+
+<br>: Line break.
+
+<hr>: Horizontal rule (divider).
+
+<strong>: Bold (semantically strong).
+
+<em>: Italic (semantically emphasized).
+
+<b>: Bold (without semantic meaning).
+
+<i>: Italic (without semantic meaning).
+
+<u>: Underline.
+
+<small>: Smaller text.
+
+📋 List Tags
+<ul>: Unordered list.
+
+<ol>: Ordered list.
+
+<li>: List item.
+
+🔗 Hyperlink and Media
+<a>: Anchor (for links).
+
+<img>: Image.
+
+<video>: Embed video.
+
+<audio>: Embed audio.
+
+<source>: Media source (used with <video> or <audio>).
+
+📦 Container Tags
+<div>: Generic block container.
+
+<span>: Generic inline container.
+
+<section>: Thematic grouping of content.
+
+<article>: Independent, self-contained content.
+
+<header>: Header section.
+
+<footer>: Footer section.
+
+<nav>: Navigation links.
+
+<main>: Main content of the document.
+
+<aside>: Side content (like a sidebar).
+
+📑 Table Tags
+<table>: Creates a table.
+
+<tr>: Table row.
+
+<td>: Table data cell.
+
+<th>: Table header cell.
+
+<thead>, <tbody>, <tfoot>: Group parts of a table.
+
+🧾 Form Tags
+<form>: Defines a form.
+
+<input>: Input field.
+
+<textarea>: Multi-line text input.
+
+<button>: Clickable button.
+
+<label>: Label for form elements.
+
+<select>, <option>: Dropdown menu.
+
+<fieldset>, <legend>: Group and describe form elements.
+
+Would you like a printable cheat sheet or a specific example using these tags?
+
+
+
+
+
+
+Attach
