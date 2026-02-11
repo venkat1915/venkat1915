@@ -1,0 +1,78 @@
+clc;
+clear;
+close all;
+
+%% PARAMETERS
+bit_duration = 0.01;      % Bit duration (seconds)
+fs = 10000;               % Sampling frequency
+distance = 5;             % Distance in meters
+alpha = 0.2;              % Attenuation coefficient
+I0 = 1;                   % Initial laser intensity
+
+%% MESSAGE
+msg = 'HELLO';
+
+% Convert text to binary
+binary_matrix = dec2bin(msg,8) - '0';
+binary_msg = reshape(binary_matrix.',1,[]);
+
+%% TIME VECTOR
+samples_per_bit = bit_duration * fs;
+total_samples = samples_per_bit * length(binary_msg);
+t = (0:total_samples-1)/fs;
+
+signal = zeros(1,total_samples);
+
+%% OOK MODULATION
+for i = 1:length(binary_msg)
+    if binary_msg(i) == 1
+        start_index = (i-1)*samples_per_bit + 1;
+        end_index = i*samples_per_bit;
+        signal(start_index:end_index) = I0;
+    end
+end
+
+%% UNDERWATER ATTENUATION (Beer-Lambert Law)
+attenuation = exp(-alpha * distance);
+received_signal = signal * attenuation;
+
+%% ADD GAUSSIAN NOISE
+noise_power = 0.1;
+noise = noise_power * randn(size(received_signal));
+received_signal = received_signal + noise;
+
+%% DETECTION
+threshold = 0.5 * attenuation;
+received_bits = zeros(1,length(binary_msg));
+
+for i = 1:length(binary_msg)
+    start_index = (i-1)*samples_per_bit + 1;
+    end_index = i*samples_per_bit;
+    sample_value = mean(received_signal(start_index:end_index));
+    
+    if sample_value > threshold
+        received_bits(i) = 1;
+    else
+        received_bits(i) = 0;
+    end
+end
+
+%% RECONSTRUCT MESSAGE
+received_bits_char = char(received_bits + '0');
+received_bits_matrix = reshape(received_bits_char,8,[]).';
+received_msg = char(bin2dec(received_bits_matrix)).';
+
+%% DISPLAY RESULTS
+disp('Original Message:');
+disp(msg);
+
+disp('Received Message:');
+disp(received_msg);
+
+%% PLOT RECEIVED SIGNAL
+figure;
+plot(t, received_signal);
+title('Received Signal After Underwater Channel');
+xlabel('Time (seconds)');
+ylabel('Amplitude');
+grid on;
